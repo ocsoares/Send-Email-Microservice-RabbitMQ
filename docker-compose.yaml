@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+    rabbitmq:
+        container_name: rabbitmq-email
+        hostname: rabbitmq
+        image: rabbitmq:3.11-management-alpine
+        env_file:
+            - .env
+        ports:
+            - 5672:5672
+            - 15672:15672
+
+    postgres:
+        container_name: postgresql
+        image: 'postgres:latest'
+        env_file:
+            - .env
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
