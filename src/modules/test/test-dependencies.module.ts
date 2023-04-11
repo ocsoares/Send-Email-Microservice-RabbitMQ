@@ -1,18 +1,17 @@
 import { Global, Module } from '@nestjs/common';
 import { EmailModule } from '../email/email.module';
+import { EmailRepository } from 'src/repositories/abstracts/EmailRepository';
 
 @Global()
 @Module({
-    imports: [
-        EmailModule
-    ],
+    imports: [EmailModule],
     providers: [
         {
-            provide: /* REPOSITORY */,
-            useClass: /* FAKE REPOSITORY IMPLEMENTATION */,
+            provide: EmailRepository,
+            useClass: null, // Fake Repository instead null !!!
         },
         // more...
     ],
-exports: [/* EXPORT REPOSITORY */],
+    exports: [EmailRepository],
 })
 export class TestDependenciesModule {}

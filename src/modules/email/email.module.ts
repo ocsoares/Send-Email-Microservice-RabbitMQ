@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { SendEmailService } from './use-cases/send-email/send-email.service';
-import { SendEmailController } from './use-cases/send-email/send-email.controller';
+import { PublishSendEmailService } from './use-cases/send-email/publish/publish-send-email.service';
+import { ConsumerSendEmailService } from './use-cases/send-email/consumer/consumer-send-email.service';
+import { PublishSendEmailController } from './use-cases/send-email/publish/publish-send-email.controller';
 
 @Module({
-    providers: [SendEmailService],
-    controllers: [SendEmailController],
+    providers: [PublishSendEmailService, ConsumerSendEmailService],
+    controllers: [PublishSendEmailController],
 })
 export class EmailModule {}
