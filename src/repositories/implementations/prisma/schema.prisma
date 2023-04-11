@@ -10,11 +10,20 @@ datasource db {
     url      = env("PRISMA_URL")
 }
 
-model User {
-    id        String   @id @default(uuid())
-    any       String   @unique
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum StatusEmail {
+    sent
+    failed
+}
 
-    @@map("any")
+model Email {
+    id           String      @id @default(uuid())
+    email_from   String
+    email_to     String
+    subject      String      @db.VarChar(100)
+    text         String      @db.VarChar(10000)
+    status_email StatusEmail
+    created_at   DateTime    @default(now())
+    updated_at   DateTime    @updatedAt
+
+    @@map("email")
 }
