@@ -1,5 +1,5 @@
-import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
 import { Injectable } from '@nestjs/common';
+import { IEmail } from 'src/models/IEmail';
 import { IService } from 'src/interfaces/IService';
 import { EmailRepository } from 'src/repositories/abstracts/EmailRepository';
 
@@ -7,14 +7,7 @@ import { EmailRepository } from 'src/repositories/abstracts/EmailRepository';
 export class PublishSendEmailService implements IService {
     constructor(private readonly _sendEmailRepository: EmailRepository) {}
 
-    @RabbitSubscribe({
-        exchange: 'amq.direct',
-        routingKey: 'email',
-        queue: 'send-email',
-    })
-    async execute(data?: string | object): Promise<string | object> {
-        console.log('DATA DO RABBIT:', data);
-
-        return data;
+    async execute(data?: IEmail): Promise<string> {
+        return null;
     }
 }

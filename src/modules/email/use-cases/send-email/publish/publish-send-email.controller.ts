@@ -1,9 +1,10 @@
-import { Controller, Post } from '@nestjs/common';
-import { IController } from 'src/interfaces/IController';
+import { Body, Controller, Post } from '@nestjs/common';
+import { IController, returnHandle } from 'src/interfaces/IController';
 import { PublishSendEmailService } from './publish-send-email.service';
 import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
+import { PublishSendEmailDTO } from './dtos/PublishSendEmailDTO';
 
-@Controller('publish')
+@Controller('send')
 export class PublishSendEmailController implements IController {
     constructor(
         private readonly _sendEmailService: PublishSendEmailService,
@@ -11,14 +12,11 @@ export class PublishSendEmailController implements IController {
     ) {}
 
     @Post()
-    async handle(...args: object[]): Promise<any> {
-        await this._amqpConnection.publish(
-            'amq.direct',
-            'email',
-            'mensagem teste',
-        );
-        const arroz = await this._sendEmailService.execute();
+    async handle(@Body() body: PublishSendEmailDTO): Promise<returnHandle> {
+        await this._amqpConnection.publish('amq.direct', 'email', body);
 
-        return arroz;
+        return {
+            message: 'Email enviado com sucesso !',
+        };
     }
 }
