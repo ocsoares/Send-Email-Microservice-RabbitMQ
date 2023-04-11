@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { PrismaService } from './prisma-client.service';
 import { EmailRepository } from 'src/repositories/abstracts/EmailRepository';
-import { PrismaEmailRepository } from './transaction/PrismaEmailRepository';
+import { PrismaEmailRepository } from './email/PrismaEmailRepository';
 
 @Global()
 @Module({
