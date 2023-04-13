@@ -25,7 +25,7 @@ export class ConsumerSendEmailService implements IService {
     async execute(data: PublishSendEmailDTO): Promise<void> {
         try {
             await this._mailerService.sendMail({
-                from: data.email_from,
+                from: process.env.NODEMAILER_USER,
                 to: data.email_to,
                 subject: data.subject,
                 text: data.text,
@@ -33,12 +33,14 @@ export class ConsumerSendEmailService implements IService {
 
             await this._consumerSendEmailRepository.save({
                 ...data,
+                email_from: process.env.NODEMAILER_USER,
                 status_email: 'sent',
                 created_at: new Date(),
             });
         } catch (error) {
             await this._consumerSendEmailRepository.save({
                 ...data,
+                email_from: process.env.NODEMAILER_USER,
                 status_email: 'failed',
                 created_at: new Date(),
             });

@@ -6,10 +6,6 @@ export const MAX_TEXT_LENGTH = 10000;
 export class PublishSendEmailDTO {
     @IsNotEmpty()
     @IsEmail()
-    readonly email_from: string;
-
-    @IsNotEmpty()
-    @IsEmail()
     readonly email_to: string;
 
     @IsNotEmpty()
