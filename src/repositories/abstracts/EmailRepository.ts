@@ -1,3 +1,5 @@
+import { IEmail } from 'src/models/IEmail';
+
 export abstract class EmailRepository {
-    abstract any(data: any): Promise<any>;
+    abstract save(data: IEmail): Promise<void>;
 }
