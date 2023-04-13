@@ -3,6 +3,10 @@ import { IController, returnHandle } from 'src/interfaces/IController';
 import { PublishSendEmailService } from './publish-send-email.service';
 import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 import { PublishSendEmailDTO } from './dtos/PublishSendEmailDTO';
+import {
+    RABBITMQ_EMAIL_EXCHANGE,
+    RABBITMQ_EMAIL_ROUTINGKEY,
+} from 'src/config/rabbitmq';
 
 @Controller('send')
 export class PublishSendEmailController implements IController {
@@ -13,7 +17,11 @@ export class PublishSendEmailController implements IController {
 
     @Post()
     async handle(@Body() body: PublishSendEmailDTO): Promise<returnHandle> {
-        await this._amqpConnection.publish('amq.direct', 'email', body);
+        await this._amqpConnection.publish(
+            RABBITMQ_EMAIL_EXCHANGE,
+            RABBITMQ_EMAIL_ROUTINGKEY,
+            body,
+        );
 
         return {
             message: 'Email enviado com sucesso !',
