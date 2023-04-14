@@ -1,14 +1,14 @@
 import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { IService } from 'src/interfaces/IService';
-import { EmailRepository } from 'src/repositories/abstracts/EmailRepository';
+import { IService } from '../../../../../interfaces/IService';
+import { EmailRepository } from '../../../../../repositories/abstracts/EmailRepository';
 import { PublishSendEmailDTO } from '../publish/dtos/PublishSendEmailDTO';
 import {
     RABBITMQ_EMAIL_EXCHANGE,
     RABBITMQ_EMAIL_QUEUE,
     RABBITMQ_EMAIL_ROUTINGKEY,
-} from 'src/config/rabbitmq';
+} from '../../../../../config/rabbitmq';
 
 @Injectable()
 export class ConsumerSendEmailService implements IService {

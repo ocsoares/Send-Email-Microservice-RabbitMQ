@@ -1,12 +1,15 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { IController, returnHandle } from 'src/interfaces/IController';
+import {
+    IController,
+    returnHandle,
+} from '../../../../../interfaces/IController';
 import { PublishSendEmailService } from './publish-send-email.service';
 import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 import { PublishSendEmailDTO } from './dtos/PublishSendEmailDTO';
 import {
     RABBITMQ_EMAIL_EXCHANGE,
     RABBITMQ_EMAIL_ROUTINGKEY,
-} from 'src/config/rabbitmq';
+} from '../../../../../config/rabbitmq';
 
 @Controller('send')
 export class PublishSendEmailController implements IController {
