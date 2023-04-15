@@ -3,8 +3,6 @@ import { TestingModule, Test } from '@nestjs/testing';
 import { TestDependenciesModule } from '../../../../../modules/test/test-dependencies.module';
 import * as supertest from 'supertest';
 import { PublishSendEmailService } from './publish-send-email.service';
-import { PrismaService } from '../../../../../repositories/implementations/prisma/prisma-client.service';
-import { TestPrismaService } from '../../../../../repositories/implementations/prisma/test/test-prisma.service';
 import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 import { ConfigModule } from '@nestjs/config';
 import {
@@ -27,10 +25,7 @@ describe('PublishSendEmailController', () => {
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             imports: [ConfigModule.forRoot(), TestDependenciesModule],
-        })
-            .overrideProvider(PrismaService)
-            .useClass(TestPrismaService)
-            .compile();
+        }).compile();
 
         app = module.createNestApplication();
 
