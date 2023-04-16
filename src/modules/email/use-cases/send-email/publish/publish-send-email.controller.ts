@@ -11,14 +11,14 @@ import {
     RABBITMQ_EMAIL_ROUTINGKEY,
 } from '../../../../../config/rabbitmq';
 
-@Controller('send')
+@Controller()
 export class PublishSendEmailController implements IController {
     constructor(
         private readonly _sendEmailService: PublishSendEmailService,
         private readonly _amqpConnection: AmqpConnection,
     ) {}
 
-    @Post()
+    @Post('send')
     async handle(@Body() body: PublishSendEmailDTO): Promise<returnHandle> {
         await this._amqpConnection.publish(
             RABBITMQ_EMAIL_EXCHANGE,
@@ -27,7 +27,7 @@ export class PublishSendEmailController implements IController {
         );
 
         return {
-            message: 'Email enviado com sucesso !',
+            message: `Email enviado com sucesso para o destinatário: ${body.email_to} !`,
         };
     }
 }
