@@ -10,6 +10,11 @@ import {
     RABBITMQ_EMAIL_EXCHANGE,
     RABBITMQ_EMAIL_ROUTINGKEY,
 } from '../../../../../config/rabbitmq';
+import {
+    ApiBadRequestResponse,
+    ApiCreatedResponse,
+    ApiTags,
+} from '@nestjs/swagger';
 
 @Controller()
 export class PublishSendEmailController implements IController {
@@ -18,6 +23,9 @@ export class PublishSendEmailController implements IController {
         private readonly _amqpConnection: AmqpConnection,
     ) {}
 
+    @ApiTags('send-email')
+    @ApiBadRequestResponse()
+    @ApiCreatedResponse()
     @Post('send')
     async handle(@Body() body: PublishSendEmailDTO): Promise<returnHandle> {
         await this._amqpConnection.publish(
