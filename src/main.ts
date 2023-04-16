@@ -20,7 +20,7 @@ async function bootstrap() {
     const config = new DocumentBuilder()
         .setTitle('Send Email Microservice')
         .setDescription(
-            'Um microsserviço de enviar email desenvolvido com sistema de mensageria, usando o RabbitMQ',
+            'Um microsserviço de enviar email desenvolvido com sistema de mensageria, usando a ferramenta RabbitMQ',
         )
         .setVersion('1.0')
         .addTag('send-email')
