@@ -20,25 +20,27 @@ Esse é um microserviço de envial email com **filas**, desenvolvido usando a fe
 
 # Estrutura do projeto
 
-![Estrutura](https://raw.githubusercontent.com/ocsoares/images/master/LINK--)
+![Estrutura](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/structure.jpg)
 
 Esse projeto foi desenvolvido apenas para usar as técnicas de **mensageria**, então a segurança e autenticação **não** foi o foco principal.
 
-## Use-cases e módulos
+## Módulos e use-cases
 
-![Use-cases e módulos](https://raw.githubusercontent.com/ocsoares/images/master/LINK--)
+![Módulos](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/modules.jpg)
+
+![Email use-cases](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/email-use-cases.jpg)
 
 ## Publish
 
-![Publish](https://raw.githubusercontent.com/ocsoares/images/master/LINK--)
+![Publish](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/publish.jpg)
 
 ## Consumer
 
-![Consumer](https://raw.githubusercontent.com/ocsoares/images/master/LINK--)
+![Consumer](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/consumer.jpg)
 
 ## RabbitMQ Management
 
-![RabbitMQ Management](https://raw.githubusercontent.com/ocsoares/images/master/LINK--)
+![RabbitMQ Management](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/rabbitmq-management.jpg)
 
 # Principais tecnologias e bibliotecas utilizadas
 
@@ -72,7 +74,7 @@ Esse projeto foi desenvolvido apenas para usar as técnicas de **mensageria**, e
 
 Documentação feita com a ferramenta Swagger na rota **/docs**
 
-![Documentação](https://raw.githubusercontent.com/ocsoares/images/master/LINK--)
+![Documentação](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/docs.jpg)
 
 # Executar o projeto localmente
 
