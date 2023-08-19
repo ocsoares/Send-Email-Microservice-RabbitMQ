@@ -14,8 +14,6 @@
 
 🚀 https://send-email-microservice-rabbitmq.onrender.com <br>
 
-⚠️ **ATENÇÃO:** O link do Deploy pode demorar um pouco para carregar porque o serviço hiberna por inatividade.
-
 Esse é um microserviço de envial email com **filas**, desenvolvido usando a ferramenta de **mensageria** chamada **RabbitMQ**.
 
 ⚠️ **ATENÇÃO**: O email definido no **deploy** para enviar os emails é: nodevalidation12@gmail.com
