@@ -5,9 +5,23 @@ import { PORT } from './config/app';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { SwaggerCustomizationUtil } from './utils/swagger-customization.util';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { rateLimiterMiddleware } from './modules/auth/middlewares/rate-limiter.middleware';
+import helmet from 'helmet';
+import { mw } from 'request-ip';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+    // To obtain the real IP address of the request on a production server !
+    app.set('trust proxy', true);
+
+    app.use(helmet());
+
+    app.use(mw());
+
+    // I used this because NestJS Throttler Module doesn't work !!!
+    app.use(rateLimiterMiddleware);
 
     app.setGlobalPrefix('email');
 
