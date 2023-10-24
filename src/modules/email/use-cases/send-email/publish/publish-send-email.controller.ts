@@ -14,6 +14,7 @@ import {
     ApiBadRequestResponse,
     ApiCreatedResponse,
     ApiTags,
+    ApiTooManyRequestsResponse,
 } from '@nestjs/swagger';
 
 @Controller()
@@ -26,6 +27,7 @@ export class PublishSendEmailController implements IController {
     @ApiTags('send-email')
     @ApiBadRequestResponse()
     @ApiCreatedResponse()
+    @ApiTooManyRequestsResponse()
     @Post('send')
     async handle(@Body() body: PublishSendEmailDTO): Promise<returnHandle> {
         await this._amqpConnection.publish(
