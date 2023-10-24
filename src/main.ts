@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { PORT } from './config/app';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Request, Response } from 'express';
+import { SwaggerCustomizationUtil } from './utils/swagger-customization.util';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -25,9 +26,23 @@ async function bootstrap() {
         .setVersion('1.0')
         .addTag('send-email')
         .build();
+
     const document = SwaggerModule.createDocument(app, config);
 
-    SwaggerModule.setup('docs', app, document);
+    const swaggerCssUrl = SwaggerCustomizationUtil.cssUrl();
+
+    const swaggerBundleJs = SwaggerCustomizationUtil.bundleJs();
+
+    const swaggerStandalonePresetJs =
+        SwaggerCustomizationUtil.standalonePresetJs();
+
+    const swaggerFavIcon = SwaggerCustomizationUtil.favIcon();
+
+    SwaggerModule.setup('docs', app, document, {
+        customCssUrl: swaggerCssUrl,
+        customJs: [swaggerBundleJs, swaggerStandalonePresetJs],
+        customfavIcon: swaggerFavIcon,
+    });
 
     const server = app.getHttpAdapter();
 
