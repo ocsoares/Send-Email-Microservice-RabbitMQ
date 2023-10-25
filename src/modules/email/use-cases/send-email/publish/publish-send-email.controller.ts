@@ -12,11 +12,14 @@ import {
 } from '../../../../../config/rabbitmq';
 import {
     ApiBadRequestResponse,
+    ApiBearerAuth,
     ApiCreatedResponse,
     ApiTags,
     ApiTooManyRequestsResponse,
+    ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller()
 export class PublishSendEmailController implements IController {
     constructor(
@@ -25,6 +28,7 @@ export class PublishSendEmailController implements IController {
     ) {}
 
     @ApiTags('send-email')
+    @ApiUnauthorizedResponse()
     @ApiBadRequestResponse()
     @ApiCreatedResponse()
     @ApiTooManyRequestsResponse()

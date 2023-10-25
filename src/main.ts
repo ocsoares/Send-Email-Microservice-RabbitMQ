@@ -6,7 +6,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { SwaggerCustomizationUtil } from './utils/swagger-customization.util';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { rateLimiterMiddleware } from './modules/auth/middlewares/rate-limiter.middleware';
 import helmet from 'helmet';
 import { mw } from 'request-ip';
 
@@ -20,10 +19,7 @@ async function bootstrap() {
 
     app.use(mw());
 
-    // I used this because NestJS Throttler Module doesn't work !!!
-    app.use(rateLimiterMiddleware);
-
-    app.setGlobalPrefix('email');
+    app.setGlobalPrefix('api/email');
 
     app.useGlobalPipes(
         new ValidationPipe({
@@ -39,6 +35,7 @@ async function bootstrap() {
         )
         .setVersion('1.0')
         .addTag('send-email')
+        .addBearerAuth()
         .build();
 
     const document = SwaggerModule.createDocument(app, config);
