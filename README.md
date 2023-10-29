@@ -14,25 +14,25 @@
 
 🚀 https://send-email-microservice-rabbitmq.onrender.com <br>
 
-Esse é um microserviço de envial email com **filas**, desenvolvido usando a ferramenta de **mensageria** chamada **RabbitMQ**.
+Esse é um microsserviço de enviar email com **filas**, desenvolvido usando a ferramenta de **mensageria** chamada **RabbitMQ**.
 
 ⚠️ **ATENÇÃO**: O email definido no **deploy** para enviar os emails é: nodevalidation12@gmail.com
 
 # Estrutura do projeto
 
-![Estrutura](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/structure.jpg)
+![Estrutura](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/structure.png)
 
-Esse projeto foi desenvolvido apenas para usar as técnicas de **mensageria**, então a segurança e autenticação **não** foi o foco principal.
+Esse projeto foi desenvolvido para usar as técnicas de **mensageria**, mas também a segurança e autenticação foram implementadas usando **JWT** (JSON Web Token)
 
 ## Módulos e use-cases
 
-![Módulos](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/modules.jpg)
+![Módulos](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/modules.png)
 
 ![Email use-cases](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/email-use-cases.jpg)
 
 ## Publish
 
-![Publish](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/publish.jpg)
+![Publish](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/publish.png)
 
 ## Consumer
 
@@ -49,6 +49,7 @@ Esse projeto foi desenvolvido apenas para usar as técnicas de **mensageria**, e
 -   Docker
 -   RabbitMQ
 -   Nodemailer
+-   JWT
 -   PostgreSQL
 -   Prisma
 -   Jest
@@ -67,6 +68,7 @@ Esse projeto foi desenvolvido apenas para usar as técnicas de **mensageria**, e
 
 ### Funcionalidades 🎯
 
+-   Autenticação e proteção da rota com **JWT**
 -   O usuário pode enviar um **email** para qualquer outro email que especificar no body da requisição.
 -   O email que será responsável por enviar é definido por meios das **variáveis de ambiente** e passados para o módulo do **Nodemailer**.
 
@@ -74,7 +76,7 @@ Esse projeto foi desenvolvido apenas para usar as técnicas de **mensageria**, e
 
 Documentação feita com a ferramenta Swagger na rota **/docs**
 
-![Documentação](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/docs.jpg)
+![Documentação](https://raw.githubusercontent.com/ocsoares/images/master/send-email-microservice-rabbitmq/docs.png)
 
 # Executar o projeto localmente
 
