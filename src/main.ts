@@ -4,7 +4,6 @@ import { AppModule } from './app.module';
 import { PORT } from './config/app';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Request, Response } from 'express';
-import { SwaggerCustomizationUtil } from './utils/swagger-customization.util';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
 import { mw } from 'request-ip';
@@ -40,20 +39,7 @@ async function bootstrap() {
 
     const document = SwaggerModule.createDocument(app, config);
 
-    const swaggerCssUrl = SwaggerCustomizationUtil.cssUrl();
-
-    const swaggerBundleJs = SwaggerCustomizationUtil.bundleJs();
-
-    const swaggerStandalonePresetJs =
-        SwaggerCustomizationUtil.standalonePresetJs();
-
-    const swaggerFavIcon = SwaggerCustomizationUtil.favIcon();
-
-    SwaggerModule.setup('docs', app, document, {
-        customCssUrl: swaggerCssUrl,
-        customJs: [swaggerBundleJs, swaggerStandalonePresetJs],
-        customfavIcon: swaggerFavIcon,
-    });
+    SwaggerModule.setup('docs', app, document);
 
     const server = app.getHttpAdapter();
 
