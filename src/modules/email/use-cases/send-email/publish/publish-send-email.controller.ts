@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import {
     IController,
     returnHandle,
@@ -18,6 +18,7 @@ import {
     ApiTooManyRequestsResponse,
     ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 
 @ApiBearerAuth()
 @Controller()
@@ -27,6 +28,7 @@ export class PublishSendEmailController implements IController {
         private readonly _amqpConnection: AmqpConnection,
     ) {}
 
+    @UseGuards(JwtAuthGuard) // Using this globally was returning error (with APP_GUARD provide in AppModule)
     @ApiTags('send-email')
     @ApiUnauthorizedResponse()
     @ApiBadRequestResponse()
