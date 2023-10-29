@@ -1,13 +1,14 @@
 import { CronJob } from 'cron';
 import axios from 'axios';
+import 'dotenv/config';
 
-const url = 'https://send-email-microservice-rabbitmq.onrender.com';
+const url = process.env.DEPLOY_URL;
 
 console.log('Cron job running');
 
-// Run every 5 minutes to keep deploy's server alive
+// Run every 40 minutes to keep deploy's server alive
 new CronJob(
-    '*/5 * * * *',
+    '*/40 * * * *',
     async () => {
         try {
             await axios.get(url);
