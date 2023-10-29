@@ -20,7 +20,6 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 
-@ApiBearerAuth()
 @Controller()
 export class PublishSendEmailController implements IController {
     constructor(
@@ -29,6 +28,7 @@ export class PublishSendEmailController implements IController {
     ) {}
 
     @UseGuards(JwtAuthGuard) // Using this globally was returning error (with APP_GUARD provide in AppModule)
+    @ApiBearerAuth()
     @ApiTags('send-email')
     @ApiUnauthorizedResponse()
     @ApiBadRequestResponse()
