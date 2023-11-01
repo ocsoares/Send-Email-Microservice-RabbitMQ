@@ -23,6 +23,9 @@
     "prisma:studio": "npx prisma studio",
     "prisma:deploy": "npx prisma migrate deploy"
   },
+  "engines": {
+    "node": ">=19.9.0"
+  },
   "prisma": {
     "schema": "src/repositories/implementations/prisma/schema.prisma"
   },
